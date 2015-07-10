@@ -1,4 +1,4 @@
-package hm.binkley.scratch.hello;
+package hm.binkley.vertx.hello;
 
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.Route;

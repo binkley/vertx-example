@@ -1,4 +1,4 @@
-package hm.binkley.scratch.hello;
+package hm.binkley.vertx.hello;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Verticle;

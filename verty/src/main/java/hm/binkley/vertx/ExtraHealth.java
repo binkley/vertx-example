@@ -1,14 +1,14 @@
-package hm.binkley.scratch;
+package hm.binkley.vertx;
 
-import hm.binkley.scratch.health.HealthChecker.HealthCheck;
-import hm.binkley.scratch.health.HealthStatus;
-import hm.binkley.scratch.health.HealthVerticle;
+import hm.binkley.vertx.health.HealthChecker.HealthCheck;
+import hm.binkley.vertx.health.HealthStatus;
+import hm.binkley.vertx.health.HealthVerticle;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.Random;
 
-import static hm.binkley.scratch.health.HealthStatus.ERROR;
+import static hm.binkley.vertx.health.HealthStatus.ERROR;
 
 /**
  * {@code ExtraHealth} <strong>needs documentation</strong>.

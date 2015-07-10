@@ -1,4 +1,4 @@
-package hm.binkley.scratch.health;
+package hm.binkley.vertx.health;
 
 import io.vertx.ext.web.Router;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package hm.binkley.scratch.health;
+package hm.binkley.vertx.health;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Module;

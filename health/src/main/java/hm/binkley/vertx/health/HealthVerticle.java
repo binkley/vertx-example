@@ -1,6 +1,6 @@
-package hm.binkley.scratch.health;
+package hm.binkley.vertx.health;
 
-import hm.binkley.scratch.health.HealthChecker.HealthCheck;
+import hm.binkley.vertx.health.HealthChecker.HealthCheck;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Verticle;
 import io.vertx.core.json.JsonObject;
@@ -21,7 +21,7 @@ import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 import static com.squareup.okhttp.HttpUrl.Builder;
-import static hm.binkley.scratch.health.HealthStatus.ALIVE;
+import static hm.binkley.vertx.health.HealthStatus.ALIVE;
 import static io.vertx.core.http.HttpHeaders.CACHE_CONTROL;
 import static io.vertx.core.http.HttpHeaders.CONTENT_TYPE;
 import static io.vertx.core.http.HttpMethod.GET;

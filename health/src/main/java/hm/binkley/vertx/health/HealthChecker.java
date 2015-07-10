@@ -1,6 +1,6 @@
-package hm.binkley.scratch.health;
+package hm.binkley.vertx.health;
 
-import hm.binkley.scratch.health.HealthChecker.HealthCheck;
+import hm.binkley.vertx.health.HealthChecker.HealthCheck;
 import lombok.Data;
 
 import java.util.function.Supplier;

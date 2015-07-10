@@ -1,4 +1,4 @@
-package hm.binkley.scratch.health;
+package hm.binkley.vertx.health;
 
 /**
  * {@code HealthStatus} is the result of a health check in {@link

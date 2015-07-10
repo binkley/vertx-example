@@ -1,4 +1,4 @@
-package hm.binkley.scratch.net;
+package hm.binkley.vertx.net;
 
 import com.squareup.okhttp.HttpUrl;
 import lombok.EqualsAndHashCode;

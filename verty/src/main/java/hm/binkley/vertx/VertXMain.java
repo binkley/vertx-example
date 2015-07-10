@@ -1,4 +1,4 @@
-package hm.binkley.scratch;
+package hm.binkley.vertx;
 
 import io.vertx.core.Verticle;
 import io.vertx.core.Vertx;

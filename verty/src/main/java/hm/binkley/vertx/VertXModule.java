@@ -1,9 +1,9 @@
-package hm.binkley.scratch;
+package hm.binkley.vertx;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Module;
 import com.google.inject.TypeLiteral;
-import hm.binkley.scratch.health.HealthVerticle;
+import hm.binkley.vertx.health.HealthVerticle;
 import io.vertx.core.Verticle;
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
