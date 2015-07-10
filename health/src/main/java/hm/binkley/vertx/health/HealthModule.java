@@ -1,4 +1,4 @@
-package hm.binkley.scratch.health;
+package hm.binkley.vertx.health;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Module;
@@ -9,10 +9,12 @@ import org.kohsuke.MetaInfServices;
 import javax.inject.Singleton;
 import java.util.ServiceLoader;
 
+import static java.util.stream.StreamSupport.stream;
+
 /**
  * {@code HealthModule} wires {@link HealthVerticle}.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  * @todo Better pattern for extending {@link HealthVerticle}.
  */
 @MetaInfServices(Module.class)
@@ -33,11 +35,12 @@ public class HealthModule
     @Singleton
     public static HealthVerticle provideHealthVerticle(
             final ServiceLoader<Verticle> verticles) {
-        for (final Verticle v : verticles)
-            if (v instanceof HealthVerticle)
-                return (HealthVerticle) v;
-        throw new IllegalStateException(
-                "No HealthVerticle in META-INF/services");
+        return stream(verticles.spliterator(), true).
+                filter(v -> v instanceof HealthVerticle).
+                findFirst().
+                map(HealthVerticle.class::cast).
+                orElseThrow(() -> new IllegalStateException(
+                        "No HealthVerticle in META-INF/services"));
     }
 
     @Override

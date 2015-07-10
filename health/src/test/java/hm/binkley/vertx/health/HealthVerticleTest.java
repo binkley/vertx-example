@@ -1,4 +1,4 @@
-package hm.binkley.scratch.health;
+package hm.binkley.vertx.health;
 
 import io.vertx.ext.web.Router;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 /**
  * {@code HealthVerticleTest} tests {@link HealthVerticle}.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  * @todo Needs documentation
  */
 @RunWith(MockitoJUnitRunner.class)

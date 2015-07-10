@@ -1,9 +1,9 @@
-package hm.binkley.scratch;
+package hm.binkley.vertx;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Module;
 import com.google.inject.TypeLiteral;
-import hm.binkley.scratch.health.HealthVerticle;
+import hm.binkley.vertx.health.HealthVerticle;
 import io.vertx.core.Verticle;
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
@@ -17,7 +17,7 @@ import static java.util.ServiceLoader.load;
 /**
  * {@code VertXModule} wires {@link VertXMain}.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  * @todo Better pattern for extending {@link HealthVerticle}.
  */
 public class VertXModule

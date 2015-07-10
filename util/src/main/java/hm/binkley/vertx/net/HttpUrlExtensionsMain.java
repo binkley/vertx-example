@@ -1,4 +1,4 @@
-package hm.binkley.scratch.net;
+package hm.binkley.vertx.net;
 
 import com.squareup.okhttp.HttpUrl;
 import lombok.experimental.ExtensionMethod;
@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.joining;
 /**
  * {@code HttpUrlExtensionsMain} <strong>needs documentation</strong>.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  * @todo Needs documentation
  */
 @ExtensionMethod(HttpUrlExtensions.class)

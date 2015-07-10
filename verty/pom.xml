@@ -9,14 +9,14 @@
 
     <parent>
         <groupId>hm.binkley</groupId>
-        <artifactId>scratch</artifactId>
-        <version>5-SNAPSHOT</version>
+        <artifactId>vertx-example</artifactId>
+        <version>5</version>
     </parent>
 
     <artifactId>verty</artifactId>
 
     <properties>
-        <main.class>hm.binkley.scratch.VertXMain</main.class>
+        <main.class>hm.binkley.vertx.VertXMain</main.class>
     </properties>
 
     <dependencies>

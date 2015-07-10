@@ -1,6 +1,6 @@
-package hm.binkley.scratch.health;
+package hm.binkley.vertx.health;
 
-import hm.binkley.scratch.health.HealthChecker.HealthCheck;
+import hm.binkley.vertx.health.HealthChecker.HealthCheck;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Verticle;
 import io.vertx.core.json.JsonObject;
@@ -10,7 +10,6 @@ import org.kohsuke.MetaInfServices;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -20,12 +19,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
-import static com.squareup.okhttp.HttpUrl.Builder;
-import static hm.binkley.scratch.health.HealthStatus.ALIVE;
+import static hm.binkley.vertx.health.HealthStatus.ALIVE;
 import static io.vertx.core.http.HttpHeaders.CACHE_CONTROL;
 import static io.vertx.core.http.HttpHeaders.CONTENT_TYPE;
 import static io.vertx.core.http.HttpMethod.GET;
 import static java.lang.String.format;
+import static java.net.InetAddress.getLocalHost;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toMap;
@@ -33,8 +32,8 @@ import static java.util.stream.Collectors.toMap;
 /**
  * {@code HealthVerticle} <strong>needs documentation</strong>.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
- * @todo Needs documentation
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
+ * @todo Duplication in text/json health methods; avoid overdoing it
  */
 @MetaInfServices(Verticle.class)
 @Singleton
@@ -62,12 +61,7 @@ public final class HealthVerticle
     }
 
     private void healthBrowser(final RoutingContext context) {
-        final Map<String, Object> headers = new LinkedHashMap<>();
-        headers.put("NAME", "???");
-        headers.put("STATUS", null); // Placeholder to preserve order
-        headers.put("RESOURCE",
-                new Builder().scheme("https").host(hostname()).port(0)
-                        .addPathSegment("???").toString());
+        final Map<String, Object> headers = headers(context);
 
         final HealthStatus[] alive = {ALIVE};
         final String body = checks.stream().
@@ -76,17 +70,19 @@ public final class HealthVerticle
                 map(c -> format("%c %s %s - %s - %s", c.getStatus().mark(),
                         c.getStatus(), c.getDisplay(), c.getResource(),
                         c.getMessage())).
-                collect(joining("\n", "\n", "\n"));
-        headers.put("STATUS", alive[0]);
+                collect(joining("\n"));
+        headers.put("status", alive[0]);
 
+        // Build headers AFTER body so dep health checks can change status
         final String header = headers.entrySet().stream().
-                map(e -> format("%s: %s", e.getKey(), e.getValue())).
+                map(e -> format("%s: %s", e.getKey().toUpperCase(),
+                        e.getValue())).
                 collect(joining("\n"));
 
         context.request().response().
-                putHeader(CONTENT_TYPE, "text/plain").
+                putHeader(CONTENT_TYPE, context.getAcceptableContentType()).
                 putHeader(CACHE_CONTROL, "no-cache").
-                end(header + "\n\n" + body);
+                end(format("%s\n\n%s\n", header, body));
     }
 
     private void healthRest(final RoutingContext context) {
@@ -98,15 +94,19 @@ public final class HealthVerticle
                         c -> mapOf("name", c.getDisplay(), "status",
                                 c.getStatus(), "resource", c.getResource(),
                                 "message", c.getMessage()), throwingMerger(),
-                        // Ensure top-level status is first entry
-                        () -> mapOf("name", "???", "status", ALIVE)));
-        body.put("status", alive[0]); // Update with final status
+                        () -> headers(context)));
+        body.put("status", alive[0]);
 
         context.request().response().
                 putHeader(CONTENT_TYPE, context.getAcceptableContentType()).
                 putHeader(CACHE_CONTROL, "no-cache").
                 end(new JsonObject(body).
                         encode());
+    }
+
+    private static Map<String, Object> headers(final RoutingContext context) {
+        return mapOf("name", "???", "status", ALIVE, "resource",
+                context.request().absoluteURI(), "hostname", hostname());
     }
 
     /** @todo Utility code - drops null-valued keys */
@@ -137,7 +137,7 @@ public final class HealthVerticle
 
     private static String hostname() {
         try {
-            return InetAddress.getLocalHost().getCanonicalHostName();
+            return getLocalHost().getHostName();
         } catch (final UnknownHostException e) {
             throw new AssertionError(e);
         }

@@ -9,8 +9,8 @@
 
     <parent>
         <groupId>hm.binkley</groupId>
-        <artifactId>scratch</artifactId>
-        <version>5-SNAPSHOT</version>
+        <artifactId>vertx-example</artifactId>
+        <version>5</version>
     </parent>
 
     <artifactId>hello</artifactId>

@@ -1,6 +1,6 @@
-package hm.binkley.scratch.health;
+package hm.binkley.vertx.health;
 
-import hm.binkley.scratch.health.HealthChecker.HealthCheck;
+import hm.binkley.vertx.health.HealthChecker.HealthCheck;
 import lombok.Data;
 
 import java.util.function.Supplier;
@@ -9,7 +9,7 @@ import java.util.function.Supplier;
  * {@code HealthChecker} checks for component health for {@link
  * HealthVerticle}.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  * @todo Needs documentation
  */
 public interface HealthChecker
