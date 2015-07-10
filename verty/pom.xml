@@ -16,7 +16,7 @@
     <artifactId>verty</artifactId>
 
     <properties>
-        <main.class>hm.binkley.scratch.VertXMain</main.class>
+        <main.class>hm.binkley.vertx.VertXMain</main.class>
     </properties>
 
     <dependencies>
