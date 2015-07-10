@@ -12,7 +12,7 @@ import static com.google.inject.Guice.createInjector;
 /**
  * {@code VertXMain} runs the demo verticle REST service.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  */
 public final class VertXMain
         implements Runnable {

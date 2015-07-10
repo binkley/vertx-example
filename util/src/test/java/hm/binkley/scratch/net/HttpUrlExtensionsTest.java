@@ -23,7 +23,7 @@ import static org.junit.Assert.assertThat;
 /**
  * {@code HttpUrlExtensionsTest} tests {@link HttpUrlExtensions}.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  */
 @RunWith(Parameterized.class)
 public class HttpUrlExtensionsTest {

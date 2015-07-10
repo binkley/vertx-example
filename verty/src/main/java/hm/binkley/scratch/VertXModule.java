@@ -17,7 +17,7 @@ import static java.util.ServiceLoader.load;
 /**
  * {@code VertXModule} wires {@link VertXMain}.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  * @todo Better pattern for extending {@link HealthVerticle}.
  */
 public class VertXModule

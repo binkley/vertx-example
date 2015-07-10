@@ -33,7 +33,7 @@ import static java.util.stream.Collectors.toMap;
 /**
  * {@code HealthVerticle} <strong>needs documentation</strong>.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  * @todo Needs documentation
  */
 @MetaInfServices(Verticle.class)

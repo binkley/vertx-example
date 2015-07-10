@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 /**
  * {@code HelloVerticleTest} tests {@link HelloVerticle}.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  * @todo Needs documentation
  */
 @RunWith(MockitoJUnitRunner.class)

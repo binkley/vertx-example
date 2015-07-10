@@ -24,7 +24,7 @@ import static java.util.stream.IntStream.range;
 /**
  * {@code HttpUrlExtensions} <strong>needs documentation</strong>.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  * @todo Needs documentation
  */
 public final class HttpUrlExtensions {

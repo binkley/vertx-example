@@ -9,7 +9,7 @@ import java.util.function.Supplier;
  * {@code HealthChecker} checks for component health for {@link
  * HealthVerticle}.
  *
- * @author <a href="mailto:boxley@thoughtworks.com">Brian Oxley</a>
+ * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
  * @todo Needs documentation
  */
 public interface HealthChecker
