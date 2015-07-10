@@ -16,8 +16,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.function.BinaryOperator;
-import java.util.stream.Collectors;
 
 import static hm.binkley.vertx.health.HealthStatus.ALIVE;
 import static io.vertx.core.http.HttpHeaders.CACHE_CONTROL;
@@ -63,15 +61,14 @@ public final class HealthVerticle
     private void healthBrowser(final RoutingContext context) {
         final Map<String, Object> headers = headers(context);
 
-        final HealthStatus[] alive = {ALIVE};
         final String body = checks.stream().
                 map(HealthChecker::get).
-                peek(c -> alive[0] = alive[0].with(c.getStatus())).
+                peek(c -> headers.merge("status", c.getStatus(),
+                        (a, b) -> ((HealthStatus) a).with((HealthStatus) b))).
                 map(c -> format("%c %s %s - %s - %s", c.getStatus().mark(),
                         c.getStatus(), c.getDisplay(), c.getResource(),
                         c.getMessage())).
                 collect(joining("\n"));
-        headers.put("status", alive[0]);
 
         // Build headers AFTER body so dep health checks can change status
         final String header = headers.entrySet().stream().
@@ -86,21 +83,23 @@ public final class HealthVerticle
     }
 
     private void healthRest(final RoutingContext context) {
-        final HealthStatus[] alive = {ALIVE};
+        final Map<String, Object> json = headers(context);
+
         final Map<String, Object> body = checks.stream().
                 map(HealthChecker::get).
-                peek(c -> alive[0] = alive[0].with(c.getStatus())).
+                peek(c -> json.merge("status", c.getStatus(),
+                        (a, b) -> ((HealthStatus) a).with((HealthStatus) b))).
                 collect(toMap(HealthCheck::getDisplay,
                         c -> mapOf("name", c.getDisplay(), "status",
                                 c.getStatus(), "resource", c.getResource(),
-                                "message", c.getMessage()), throwingMerger(),
-                        () -> headers(context)));
-        body.put("status", alive[0]);
+                                "message", c.getMessage())));
+
+        json.putAll(body);
 
         context.request().response().
                 putHeader(CONTENT_TYPE, context.getAcceptableContentType()).
                 putHeader(CACHE_CONTROL, "no-cache").
-                end(new JsonObject(body).
+                end(new JsonObject(json).
                         encode());
     }
 
@@ -126,13 +125,6 @@ public final class HealthVerticle
                 map.put(key, value);
         }
         return map;
-    }
-
-    /** Stolen from {@link Collectors#throwingMerger}. */
-    private static <T> BinaryOperator<T> throwingMerger() {
-        return (u, v) -> {
-            throw new IllegalStateException(format("Duplicate key %s", u));
-        };
     }
 
     private static String hostname() {
