@@ -10,7 +10,7 @@
     <parent>
         <groupId>hm.binkley</groupId>
         <artifactId>vertx-example</artifactId>
-        <version>5-SNAPSHOT</version>
+        <version>5</version>
     </parent>
 
     <artifactId>verty</artifactId>
