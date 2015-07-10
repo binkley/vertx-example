@@ -9,7 +9,7 @@
 
     <groupId>hm.binkley</groupId>
     <artifactId>vertx-example</artifactId>
-    <version>5</version>
+    <version>6-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <issueManagement>
