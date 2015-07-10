@@ -4,6 +4,10 @@ Itching a scratch.
 
 ## Releases
 
+### 5
+
+* Moved to github as binkley/vertx-example
+
 ### 4
 
 * Tests
