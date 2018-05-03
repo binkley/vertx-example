@@ -79,7 +79,7 @@
         <project.reporting.sourceEncoding>${java.charset}
         </project.reporting.sourceEncoding>
         <retrofit.version>1.9.0</retrofit.version>
-        <vertx.version>3.0.0</vertx.version>
+        <vertx.version>3.5.1</vertx.version>
     </properties>
 
     <dependencies>
