@@ -194,6 +194,7 @@
     </dependencyManagement>
 
     <build>
+        <defaultGoal>clean package</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
