@@ -57,19 +57,18 @@
     </modules>
 
     <properties>
-        <guice.version>4.0</guice.version>
+        <generateBackupPoms>false</generateBackupPoms>
+        <guice.version>4.2.0</guice.version>
         <hamcrest.version>1.3</hamcrest.version>
         <java.charset>UTF-8</java.charset>
         <java.version>1.8</java.version>
-        <jgitflow-maven-plugin.version>1.0-m5.1
-        </jgitflow-maven-plugin.version>
         <junit.version>4.12</junit.version>
-        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
-        <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
-        <maven-shade-plugin.version>2.4</maven-shade-plugin.version>
-        <metainf-services.version>1.5</metainf-services.version>
-        <mockito.version>1.10.19</mockito.version>
-        <okhttp.version>2.4.0</okhttp.version>
+        <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+        <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
+        <maven-shade-plugin.version>3.0.0</maven-shade-plugin.version>
+        <metainf-services.version>1.7</metainf-services.version>
+        <mockito.version>2.18.3</mockito.version>
+        <okhttp.version>2.7.5</okhttp.version>
         <project.build.outputEncoding>${java.charset}
         </project.build.outputEncoding>
         <project.build.sourceEncoding>${java.charset}
@@ -78,7 +77,9 @@
         </project.reporting.outputEncoding>
         <project.reporting.sourceEncoding>${java.charset}
         </project.reporting.sourceEncoding>
-        <retrofit.version>1.9.0</retrofit.version>
+        <retrofit.version>2.4.0</retrofit.version>
+        <versions-maven-plugin.phase>none</versions-maven-plugin.phase>
+        <versions-maven-plugin.version>2.5</versions-maven-plugin.version>
         <vertx.version>3.5.1</vertx.version>
     </properties>
 
@@ -175,17 +176,17 @@
                 <version>${okhttp.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.squareup.retrofit</groupId>
+                <groupId>com.squareup.retrofit2</groupId>
                 <artifactId>retrofit</artifactId>
                 <version>${retrofit.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.squareup.retrofit</groupId>
+                <groupId>com.squareup.retrofit2</groupId>
                 <artifactId>converter-wire</artifactId>
                 <version>${retrofit.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.squareup.retrofit</groupId>
+                <groupId>com.squareup.retrofit2</groupId>
                 <artifactId>converter-jackson</artifactId>
                 <version>${retrofit.version}</version>
             </dependency>
@@ -194,6 +195,20 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>update-dependencies</id>
+                        <phase>${versions-maven-plugin.phase}</phase>
+                        <goals>
+                            <goal>update-properties</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
@@ -228,14 +243,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>external.atlassian.jgitflow</groupId>
-                <artifactId>jgitflow-maven-plugin</artifactId>
-                <version>${jgitflow-maven-plugin.version}</version>
-                <configuration>
-                    <noDeploy>true</noDeploy>
-                </configuration>
             </plugin>
         </plugins>
 
